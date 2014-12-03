@@ -132,8 +132,17 @@
         
         [self.parentView addSubview:self];
         
+        UIWindow *window;
+        id<UIApplicationDelegate> delegate = [[UIApplication sharedApplication] delegate];
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        if ([delegate respondsToSelector:@selector(window)])
+            window = [delegate performSelector:@selector(window)];
+        else window = [[UIApplication sharedApplication] keyWindow];
+        
+        CGRect frame = CGRectMake(window.frame.origin.x, window.frame.origin.y, window.frame.size.width, window.frame.size.height);
+        
         // Create background
-        faderView = [[UIView alloc] initWithFrame:self.parentView.bounds];
+        faderView = [[UIView alloc] initWithFrame:frame];
         faderView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
 //        faderView.alpha = 0.0f;
         UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareViewBackgroundTapped:)];
