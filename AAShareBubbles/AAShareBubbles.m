@@ -25,7 +25,7 @@
 {
     NSMutableArray *bubbles;
     NSMutableDictionary *bubbleIndexTypes;
-
+    UIWindow *window;
     UIView *faderView;
 }
 
@@ -132,9 +132,9 @@
         
         [self.parentView addSubview:self];
         
-        UIWindow *window;
+        
         id<UIApplicationDelegate> delegate = [[UIApplication sharedApplication] delegate];
-        //---------------------------------------------------------------------------------------------------------------------------------------------
+
         if ([delegate respondsToSelector:@selector(window)])
             window = [delegate performSelector:@selector(window)];
         else window = [[UIApplication sharedApplication] keyWindow];
@@ -147,7 +147,9 @@
 //        faderView.alpha = 0.0f;
         UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareViewBackgroundTapped:)];
         [faderView addGestureRecognizer:tapges];
-        [parentView insertSubview:faderView belowSubview:self];
+        [window addSubview:faderView];
+        
+        [faderView addSubview:self];
         
         int titleY = self.frame.origin.y - 90;
         int subtitleY = self.frame.origin.y - 54;
