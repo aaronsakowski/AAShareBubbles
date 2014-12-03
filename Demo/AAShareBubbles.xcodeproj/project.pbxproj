@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93A84FF21A2D5931009BED17 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A84FF11A2D5931009BED17 /* Social.framework */; };
+		93A84FF41A2D5B2A009BED17 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A84FF31A2D5B2A009BED17 /* MessageUI.framework */; };
 		CE0390A2185B58FA009E4395 /* AAShareBubbles.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE0390A1185B58FA009E4395 /* AAShareBubbles.bundle */; };
 		CE5516E11858F69700818A58 /* AAShareBubbles.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5516D61858F69700818A58 /* AAShareBubbles.m */; };
 		CEBAD0A21844B41100D66BBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBAD0A11844B41100D66BBB /* UIKit.framework */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93A84FF11A2D5931009BED17 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		93A84FF31A2D5B2A009BED17 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CE0390A1185B58FA009E4395 /* AAShareBubbles.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AAShareBubbles.bundle; sourceTree = "<group>"; };
 		CE5516D51858F69700818A58 /* AAShareBubbles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAShareBubbles.h; sourceTree = "<group>"; };
 		CE5516D61858F69700818A58 /* AAShareBubbles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAShareBubbles.m; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93A84FF41A2D5B2A009BED17 /* MessageUI.framework in Frameworks */,
+				93A84FF21A2D5931009BED17 /* Social.framework in Frameworks */,
 				CEBAD0A21844B41100D66BBB /* UIKit.framework in Frameworks */,
 				CEBAD0A41844B41100D66BBB /* Foundation.framework in Frameworks */,
 				CEBAD0A61844B41100D66BBB /* CoreGraphics.framework in Frameworks */,
@@ -99,6 +105,8 @@
 		CEBAD0A01844B41100D66BBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93A84FF31A2D5B2A009BED17 /* MessageUI.framework */,
+				93A84FF11A2D5931009BED17 /* Social.framework */,
 				CEBAD0A11844B41100D66BBB /* UIKit.framework */,
 				CEBAD0A31844B41100D66BBB /* Foundation.framework */,
 				CEBAD0A51844B41100D66BBB /* CoreGraphics.framework */,

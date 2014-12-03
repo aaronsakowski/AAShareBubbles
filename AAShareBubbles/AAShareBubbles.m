@@ -45,7 +45,7 @@
         self.bubbleRadius = 40;
         self.parentView = inView;
         self.faderAlpha = 0.15;
-        self.faderColor = [UIColor blackColor];
+//        self.faderColor = [UIColor blackColor];
         
         self.facebookBackgroundColorRGB = 0x3c5a9a;
         self.twitterBackgroundColorRGB = 0x3083be;
@@ -62,6 +62,45 @@
         self.favoriteBackgroundColorRGB = 0xedd013;
         self.whatsappBackgroundColorRGB = 0x00B000;
         
+        self.titleColor = [UIColor darkGrayColor];
+        self.subtitleColor = [UIColor darkGrayColor];
+        
+        self.customButtons = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (id)initWithPoint:(CGPoint)point radius:(int)radiusValue inView:(UIView *)inView title:(NSString *)title subtitle:(NSString *)subtitle
+{
+    self = [super initWithFrame:CGRectMake(point.x - radiusValue, point.y - radiusValue, 2 * radiusValue, 2 * radiusValue)];
+    if (self) {
+        self.radius = radiusValue;
+        self.bubbleRadius = 40;
+        self.parentView = inView;
+        self.faderAlpha = 0.15;
+//        self.faderColor = [UIColor blackColor];
+        
+        self.facebookBackgroundColorRGB = 0x3c5a9a;
+        self.twitterBackgroundColorRGB = 0x3083be;
+        self.mailBackgroundColorRGB = 0xbb54b5;
+        self.googlePlusBackgroundColorRGB = 0xd95433;
+        self.tumblrBackgroundColorRGB = 0x385877;
+        self.vkBackgroundColorRGB = 0x4a74a5;
+        self.linkedInBackgroundColorRGB = 0x008dd2;
+        self.pinterestBackgroundColorRGB = 0xb61d23;
+        self.youtubeBackgroundColorRGB = 0xce3025;
+        self.vimeoBackgroundColorRGB = 0x00acf2;
+        self.redditBackgroundColorRGB = 0xffffff;
+        self.instagramBackgroundColorRGB = 0x2e5e89;
+        self.favoriteBackgroundColorRGB = 0xedd013;
+        self.whatsappBackgroundColorRGB = 0x00B000;
+        
+        self.titleColor = [UIColor darkGrayColor];
+        self.subtitleColor = [UIColor darkGrayColor];
+        
+        self.titleString = title;
+        self.subtitleString = subtitle;
+        
         self.customButtons = [[NSMutableArray alloc] init];
     }
     return self;
@@ -76,7 +115,7 @@
 }
 
 -(void)shareButtonTappedWithType:(int)buttonType {
-    [self hide];
+//    [self hide];
     if([self.delegate respondsToSelector:@selector(aaShareBubbles:tappedBubbleWithType:)]) {
         [self.delegate aaShareBubbles:self tappedBubbleWithType:buttonType];
     }
@@ -95,14 +134,53 @@
         
         // Create background
         faderView = [[UIView alloc] initWithFrame:self.parentView.bounds];
-        faderView.backgroundColor = self.faderColor;
-        faderView.alpha = 0.0f;
+        faderView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.0];
+//        faderView.alpha = 0.0f;
         UITapGestureRecognizer *tapges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareViewBackgroundTapped:)];
         [faderView addGestureRecognizer:tapges];
         [parentView insertSubview:faderView belowSubview:self];
+        
+        int titleY = self.frame.origin.y - 90;
+        int subtitleY = self.frame.origin.y - 54;
+        
+        UILabel *titleLabel = [[UILabel alloc] init];
+        [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
+        [titleLabel setTextColor:self.titleColor];
+        [titleLabel setNumberOfLines:1];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        
+        titleLabel.text = self.titleString;
+        [faderView addSubview:titleLabel];
+        
+        NSDictionary *viewsDictionary = @{@"titleLabel":titleLabel};
+        NSArray *wConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-20-[titleLabel]-20-|" options:0 metrics:nil views:viewsDictionary];
+        [faderView addConstraints:wConstraints];
+        NSArray *vConstraints = [NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|-%d-[titleLabel]", titleY] options:0 metrics:nil views:viewsDictionary];
+        [faderView addConstraints:vConstraints];
+        
+        
+        UILabel *subtitleLabel = [[UILabel alloc] init];
+        [subtitleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [subtitleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        [subtitleLabel setTextColor:self.subtitleColor];
+        [subtitleLabel setNumberOfLines:2];
+        [subtitleLabel setTextAlignment:NSTextAlignmentCenter];
+        
+        subtitleLabel.text = self.subtitleString;
+        [faderView addSubview:subtitleLabel];
+        
+        NSDictionary *viewsSDictionary = @{@"subtitleLabel":subtitleLabel};
+        NSArray *wsConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-20-[subtitleLabel]-20-|" options:0 metrics:nil views:viewsSDictionary];
+        [faderView addConstraints:wsConstraints];
+        NSArray *vsConstraints = [NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|-%d-[subtitleLabel]", subtitleY] options:0 metrics:nil views:viewsSDictionary];
+        [faderView addConstraints:vsConstraints];
+        
+        
 
         [UIView animateWithDuration:0.25 animations:^{
-            faderView.alpha = self.faderAlpha;
+//            faderView.alpha = self.faderAlpha;
+            faderView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:self.faderAlpha];
         }];
         // --
         

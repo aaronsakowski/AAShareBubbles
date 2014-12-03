@@ -63,9 +63,6 @@ typedef enum AAShareBubbleType : int {
 // The fader view alpha, by default is 0.15
 @property(nonatomic, assign) CGFloat faderAlpha;
 
-// The fader view background color, default is black
-@property (nonatomic, strong) UIColor *faderColor;
-
 @property (nonatomic, assign) int facebookBackgroundColorRGB;
 @property (nonatomic, assign) int twitterBackgroundColorRGB;
 @property (nonatomic, assign) int mailBackgroundColorRGB;
@@ -81,7 +78,13 @@ typedef enum AAShareBubbleType : int {
 @property (nonatomic, assign) int favoriteBackgroundColorRGB;
 @property (nonatomic, assign) int whatsappBackgroundColorRGB;
 
+@property (nonatomic, strong) NSString *titleString;
+@property (nonatomic, strong) UIColor *titleColor;
+@property (nonatomic, strong) NSString *subtitleString;
+@property (nonatomic, strong) UIColor *subtitleColor;
+
 -(id)initWithPoint:(CGPoint)point radius:(int)radiusValue inView:(UIView *)inView;
+-(id)initWithPoint:(CGPoint)point radius:(int)radiusValue inView:(UIView *)inView title:(NSString *)title subtitle:(NSString *)subtitle;
 
 // Share bubbles will appear in UIWindow instance
 -(id)initCenteredInWindowWithRadius:(int)radiusValue;
